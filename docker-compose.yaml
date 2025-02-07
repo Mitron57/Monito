@@ -34,7 +34,8 @@ services:
       DB_USER: postgres
       DB_PASS: postgres
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       backend:
     ports:
