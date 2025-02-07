@@ -1,7 +1,7 @@
 services:
   pinger:
     build:
-      context: ./pinger
+      context: ./Pinger
     depends_on:
       - dockmon
     volumes:
@@ -28,7 +28,7 @@ services:
     
   dockmon:
     build:
-      context: ./dockMon
+      context: ./DockMon
     container_name: dockmon
     environment:
       DB_USER: postgres
