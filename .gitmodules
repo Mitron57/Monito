@@ -1,0 +1,6 @@
+[submodule "Pinger"]
+	path = Pinger
+	url = https://github.com/Mitron57/Pinger
+[submodule "DockMon"]
+	path = DockMon
+	url = https://github.com/Mitron57/DockMon
