@@ -8,14 +8,14 @@ Web service with container status dashboard
 
 # Launch
 If you want just run locally and don't care about anything just clone this repository do this:
- - Create .env files in submodules (see [DockMon.example](./DockMon/.env.example), [Frontend.example](./MonitoFrontend/.env.example)), or simply rename without .example and run
+ - Create .env files in submodules (see [DockMon.example](https://github.com/Mitron57/DockMon/blob/main/.env.example), [Frontend.example](https://github.com/Mitron57/MonitoFrontend/blob/main/.env.example)), or simply rename them without .example and run
 ```shell
 docker-compose up -d --build
 ```
 So, if you want to tune service with your preferences, do these steps:
 
 - Open [docker-compose.yaml](docker-compose.yaml) and manually specify all you want according to manual for PostgreSQL docker image
-- Specify env files and configs for services (see [DockMon](./DockMon/README.md), [Pinger](./Pinger/README.md), [Frontend](./MonitoFrontend/README.md))
+- Specify env files and configs for services (see [DockMon](https://github.com/Mitron57/DockMon), [Pinger](https://github.com/Mitron57/Pinger), [Frontend](https://github.com/Mitron57/MonitoFrontend))
 
 ...and then run command above
 
