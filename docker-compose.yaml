@@ -2,15 +2,15 @@ services:
   pinger:
     build:
       context: ./Pinger
+    container_name: pinger
     depends_on:
       - dockmon
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      backend:
+    network_mode: host
     cap_add:
       - NET_RAW
-    
+  
   postgres:
     image: postgres:latest
     container_name: db_postgres
@@ -25,22 +25,55 @@ services:
       retries: 5
     networks:
       - backend
-    
+  
   dockmon:
     build:
       context: ./DockMon
     container_name: dockmon
-    environment:
-      DB_USER: postgres
-      DB_PASS: postgres
+    env_file: ./DockMon/.env
     depends_on:
       postgres:
         condition: service_healthy
     networks:
-      backend:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dockmon.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.dockmon.entrypoints=backend"
+      - "traefik.http.services.dockmon.loadbalancer.server.port=8080"
+  
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+    networks:
+      - frontend
+  
+  
+  
+  traefik:
+    image: traefik:v3.2.1
+    container_name: traefik
+    volumes:
+      - "./traefik.yml:/etc/traefik/traefik.yml"
+      - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - "127.0.0.1:8080:8080"
-    
+      - "80:80"
+      - "8989:8989"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - frontend
+      - dockmon
+
 networks:
   backend:
+    driver: bridge
+  frontend:
     driver: bridge

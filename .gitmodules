@@ -4,3 +4,6 @@
 [submodule "DockMon"]
 	path = DockMon
 	url = https://github.com/Mitron57/DockMon
+[submodule "MonitoFrontend"]
+	path = MonitoFrontend
+	url = https://github.com/Mitron57/MonitoFrontend.git

@@ -1,0 +1,12 @@
+providers:
+  docker:
+    exposedByDefault: false
+
+entryPoints:
+  web:
+    address: ":80"
+  backend:
+    address: ":8989"
+
+api:
+  insecure: true
