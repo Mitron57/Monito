@@ -7,7 +7,7 @@ Web service with container status dashboard
  - Results can be accessed via frontend, which automatically polls backend
 
 # Launch
-If you want just run locally and don't care about anything just clone this repository do this:
+If you want just run locally and don't care about anything just clone this repository and do this:
  - Create .env files in submodules (see [DockMon.example](https://github.com/Mitron57/DockMon/blob/main/.env.example), [Frontend.example](https://github.com/Mitron57/MonitoFrontend/blob/main/.env.example)), or simply rename them without .example and run
 ```shell
 docker-compose up -d --build
